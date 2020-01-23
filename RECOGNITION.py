@@ -80,6 +80,7 @@ cv2.namedWindow("test")
 img_counter = 0
 
 img_text = ''
+re_text = ''
 while True:
     ret, frame = cam.read()
     frame = cv2.flip(frame,1)
@@ -96,7 +97,7 @@ while True:
    # mask = cv2.inRange(hsv, lower_blue, upper_blue)
     masking = cv2.inRange(hsv, lower_green, upper_green)
     
-    cv2.putText(frame, img_text, (30, 400), cv2.FONT_HERSHEY_TRIPLEX, 1.5, (0, 255, 0))
+    cv2.putText(frame, re_text, (30, 400), cv2.FONT_HERSHEY_TRIPLEX, 1.5, (0, 255, 0))
     cv2.imshow("test", frame)
     cv2.imshow("mask", masking)
     
@@ -104,11 +105,18 @@ while True:
     img_name = "1.png"
     save_img = cv2.resize(masking, (image_x, image_y))
     cv2.imwrite(img_name, save_img)
-    print("{} written!".format(img_name))
+    #print("{} written!".format(img_name))
     img_text = predictor()
-        
-
-    if cv2.waitKey(1) == 27:
+    
+    pre_text = img_text
+   
+    print(pre_text)
+    k= cv2.waitKey(1)
+    if k == 32:
+        re_text = re_text+" "
+    elif k == ord('k'):
+        re_text = re_text+img_text
+    elif k == 27:
         break
 
 
