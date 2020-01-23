@@ -8,8 +8,8 @@ Created on Thu Jan 16 21:41:23 2020
 import pandas as pd
 
 # Importing the dataset
-dataset_train = pd.read_csv('image_pixels_train.csv')
-dataset_test = pd.read_csv('image_pixels_test.csv')
+dataset_train = pd.read_csv('image_pixels_train2.csv')
+dataset_test = pd.read_csv('image_pixels_test2.csv')
 
 X_train = dataset_train.iloc[:, 0:784].values
 X_test = dataset_test.iloc[:, 0:784].values
