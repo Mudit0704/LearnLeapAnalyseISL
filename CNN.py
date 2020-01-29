@@ -14,14 +14,14 @@ classifier = Sequential()
 # Step 1 - Convolution Layer 
 classifier.add(Convolution2D(32, (3, 3), input_shape = (64, 64, 3), activation = 'relu'))
 
-#step 2 - Pooling
+# Step 2 - Pooling
 classifier.add(MaxPooling2D(pool_size =(2,2)))
 
 # Adding Second Convolution Layer
 classifier.add(Convolution2D(64, (3, 3), activation = 'relu'))
 classifier.add(MaxPooling2D(pool_size =(2,2)))
 
-#Adding Third Convolution Layer
+# Adding Third Convolution Layer
 classifier.add(Convolution2D(128, (3,  3), activation = 'relu'))
 classifier.add(MaxPooling2D(pool_size =(2,2)))
 
@@ -29,7 +29,7 @@ classifier.add(MaxPooling2D(pool_size =(2,2)))
 #Step 3 - Flattening Layer
 classifier.add(Flatten())
 
-#Step 4 - Full Connection
+#Step 4 - Full Connection Layer
 classifier.add(Dense(256, activation = 'relu'))
 classifier.add(Dropout(0.5))
 classifier.add(Dense(26, activation = 'softmax'))
@@ -40,7 +40,7 @@ classifier.compile(
               loss = 'categorical_crossentropy',
               metrics = ['accuracy'])
 
-#Fittting the CNN to the images
+#Fitting the CNN to the images
 from keras.preprocessing.image import ImageDataGenerator
 train_datagen = ImageDataGenerator(
         rescale=1./255,
