@@ -11,22 +11,22 @@ from tensorflow.keras import optimizers
 # Initialing the CNN
 classifier = Sequential()
 
-# Step 1 - Convolutio Layer 
+# Step 1 - Convolution Layer 
 classifier.add(Convolution2D(32, (3, 3), input_shape = (64, 64, 3), activation = 'relu'))
 
 #step 2 - Pooling
 classifier.add(MaxPooling2D(pool_size =(2,2)))
 
-# Adding second convolution layer
+# Adding Second Convolution Layer
 classifier.add(Convolution2D(64, (3, 3), activation = 'relu'))
 classifier.add(MaxPooling2D(pool_size =(2,2)))
 
-#Adding 3rd Concolution Layer
+#Adding Third Convolution Layer
 classifier.add(Convolution2D(128, (3,  3), activation = 'relu'))
 classifier.add(MaxPooling2D(pool_size =(2,2)))
 
 
-#Step 3 - Flattening
+#Step 3 - Flattening Layer
 classifier.add(Flatten())
 
 #Step 4 - Full Connection
@@ -34,13 +34,13 @@ classifier.add(Dense(256, activation = 'relu'))
 classifier.add(Dropout(0.5))
 classifier.add(Dense(26, activation = 'softmax'))
 
-#Compiling The CNN
+#Compiling The CNN model
 classifier.compile(
               optimizer = optimizers.SGD(lr = 0.01),
               loss = 'categorical_crossentropy',
               metrics = ['accuracy'])
 
-#Part 2 Fittting the CNN to the image
+#Fittting the CNN to the images
 from keras.preprocessing.image import ImageDataGenerator
 train_datagen = ImageDataGenerator(
         rescale=1./255,
